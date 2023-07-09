@@ -1,6 +1,14 @@
 
+<ng-template [ngIf]="blueClass">
+  <p>the button is blue.</p>
+</ng-template>
+
+<p *ngIf="blueClass">the button is blue.</p>
+
+
 <button (click)="blueClass = !blueClass"
-  [ngClass]="{blue: blueClass}">Change</button>
+  [ngClass]="{blue: blueClass}"
+  [ngStyle]="{'font-size.px':fontSize}">Change</button>
 
 
 <hr />
@@ -8,8 +16,9 @@
 
 <input (keyup)="ChangeImage($event)" [value]="imgURL">
 
-<app-post [img]="imgURL" [postImgAlt]="imgAlt" (imgSelected)="logImg($event)">
-  <p>Some random caption</p>
+<app-post *ngFor="let image of images; let i = index" [img]="image" [postImgAlt]="imgAlt" 
+  (imgSelected)="logImg($event)">
+  <p>{{i}} Some random caption</p>
 </app-post>
 
 <p>Hello {{name}}</p>
